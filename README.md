@@ -28,38 +28,50 @@ Where \(\phi\) represents the instantaneous phase of the ECG signal.
 ## Machine Learning Models
 
 Several machine learning models were trained on the preprocessed ECG data. The models evaluated included:
-- **Support Vector Machine (SVM)**
 - **K-Nearest Neighbors (KNN)**
-- **CatBoost**
+- **Support Vector Machine (SVM)**
 - **Decision Tree**
-- **LightGBM**
 - **Random Forest**
-- **XGBoost**
 
-The models were evaluated using **10-fold cross-validation** to ensure robustness. The **Random Forest** model achieved the best accuracy of **98.71%**. Other key metrics such as sensitivity, precision, F1-score, and loss were also evaluated, with a focus on ensuring reliable classification of heart conditions.
+The models were evaluated using **10-fold cross-validation** to ensure robustness. Key metrics such as sensitivity, precision, F1-score, accuracy, and loss were considered in model evaluation.
+
+Additionally, **SMOTE (Synthetic Minority Over-sampling Technique)** was applied to handle the class imbalance in the dataset, improving the models' performance.
+
+**Dimensionality Reduction and Feature Selection** were also explored using **PCA (Principal Component Analysis)** and Random Forest-based feature importance methods to further enhance model performance.
 
 ## Deep Learning Models
 
-In addition to traditional machine learning methods, deep learning techniques were also applied. The deep learning models tested included:
-- **ConvNetQuacke**
+In addition to traditional machine learning methods, deep learning techniques were also applied.
+
+The **ConvNetQuacke** model was designed as follows:
+- **Model architecture**:
+  - 1D Convolutional layers
+  - Batch Normalization and MaxPooling layers
+  - Dense layers with Dropout for regularization
+  - Final classification with Sigmoid activation for binary classification
+- **Training**:
+  - The model was trained using **binary crossentropy** loss and **Adam optimizer**.
+  - Used **oversampled data** (via Random Oversampling and SMOTE) to address class imbalance.
+- **Evaluation**:
+  - The model achieved a sensitivity of **94.64%**, precision of **92.99%**, and accuracy of **89.74%**.
+
+Other deep learning models tested included:
 - **Variational Autoencoder**
 - **LSTM/GRU**
 - **CNN**
 - **LSTM**
 
-The **ConvNetQuacke** model demonstrated the best performance, achieving an accuracy of **89.74%**, with a sensitivity of **94.64%** and a precision of **92.99%**. It outperformed other models in detecting myocardial infarction.
-
 ## Summary of Findings
 
 - Both machine learning and deep learning models were effective in classifying heart diseases using ECG signals.
-- The **ConvNetQuacke** deep learning model showed the best overall performance.
+- The **Random Forest** and **ConvNetQuacke** models showed the best overall performances.
 - The dataset, after preprocessing, provided robust insights for model training, especially with the clear distinction between myocardial infarction and healthy controls.
 
 
 ## Instructions to Run the Project
 
 1. **Dependencies**:
-   - Libraries: `scikit-learn`, `TensorFlow`, `Keras`, `NumPy`, `Matplotlib`, `SciPy`
+   - Libraries: `scikit-learn`, `TensorFlow`, `Keras`, `NumPy`, `Matplotlib`, `SciPy`, `h5py`, `SMOTE`, `imblearn`, and many others
 
 2. **Steps**:
    - Clone this repository.
